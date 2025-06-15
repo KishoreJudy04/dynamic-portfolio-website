@@ -6,7 +6,7 @@ const Experience = () => {
   const items = [
     {
       title: "2023 - Present",
-      cardTitle: "Learning Full Stack Development and DSA",
+      cardTitle: "Full Stack Development and DSA Trainee",
       cardSubtitle: "NxtWave CCBP 4.0 Academy",
       cardDetailedText:
         "Currently learning Full Stack Development and Data Structures & Algorithms.",

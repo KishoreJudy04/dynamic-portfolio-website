@@ -11,7 +11,6 @@ const Projects = () => {
       image: "https://i.ibb.co/qY1rczw1/istockphoto-682084406-612x612.jpg",
       techStack: [
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-        "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
         "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
       ],
     },
