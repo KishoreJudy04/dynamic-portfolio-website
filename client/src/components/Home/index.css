@@ -124,6 +124,7 @@
 .resume-button {
   display: inline-block;
   color: #ffffff;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 1rem 2rem;
   border-radius: 50px;
   text-decoration: none;
@@ -131,6 +132,9 @@
   font-size: 1.1rem;
   transition: all 0.3s ease;
   box-shadow: 0 5px 15px #667eea;
+  cursor: pointer;
+  border: none;
+  font-family: "Montserrat", sans-serif;
 }
 
 .resume-button:hover {

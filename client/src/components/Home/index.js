@@ -19,9 +19,18 @@ const Home = () => {
             <h2 className="sub-heading">Full Stack Developer</h2>
             <p className="description"></p>
             <div className="button-group">
-              <a className="resume-button" href="/resume.pdf" download>
+              <button
+                className="resume-button"
+                onClick={() =>
+                  window.open(
+                    "https://drive.google.com/file/d/1UJtz5wM4LxHdG4bTRqeq47Bp5fAdLSJZ/view",
+                    "_blank"
+                  )
+                }
+                download
+              >
                 Download Resume
-              </a>
+              </button>
             </div>
             <div className="social-links">
               <button
