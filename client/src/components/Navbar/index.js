@@ -1,13 +1,6 @@
 import { useState, useEffect } from "react";
-import {
-  NavContainer,
-  NavContent,
-  Logo,
-  NavLinks,
-  NavLink,
-  ContactButton,
-  MobileToggle,
-} from "./styledComponents";
+import { Link } from "react-scroll";
+import "./index.css";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,68 +32,77 @@ const Navbar = () => {
   }, []);
 
   return (
-    <NavContainer>
-      <NavContent>
-        <Logo to="home">KISHORE</Logo>
-        <NavLinks isOpen={isOpen}>
-          <NavLink
-            to="home"
+    <nav className="nav-container">
+      <div className="nav-content">
+        {/* Left: Logo */}
+        <div className="logo" onClick={() => setActiveSection("home")}>
+          KISHORE
+        </div>
+
+        {/* Center: Desktop Nav Links */}
+        <div className="nav-links">
+          {["home", "about", "experience", "projects"].map((section) => (
+            <Link
+              key={section}
+              to={section}
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+              className={`nav-link ${
+                activeSection === section ? "active" : ""
+              }`}
+              onClick={() => setIsOpen(false)}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </Link>
+          ))}
+        </div>
+
+        {/* Right: Contact + Hamburger */}
+        <div className="right-group">
+          <Link
+            to="contact"
+            className="contact-button"
             spy={true}
             smooth={true}
             offset={-70}
             duration={500}
-            className={activeSection === "home" ? "active" : ""}
             onClick={() => setIsOpen(false)}
           >
-            Home
-          </NavLink>
-          <NavLink
-            to="about"
+            Contact Me
+          </Link>
+          <button
+            className={`mobile-toggle ${isOpen ? "open" : ""}`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <div className="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Nav Dropdown */}
+      <div className={`mobile-nav-links ${isOpen ? "open" : ""}`}>
+        {["home", "about", "experience", "projects"].map((section) => (
+          <Link
+            key={section}
+            to={section}
             spy={true}
             smooth={true}
             offset={-70}
             duration={500}
-            className={activeSection === "about" ? "active" : ""}
+            className={`nav-link ${activeSection === section ? "active" : ""}`}
             onClick={() => setIsOpen(false)}
           >
-            About
-          </NavLink>
-          <NavLink
-            to="experience"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-            className={activeSection === "experience" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            Experience
-          </NavLink>
-          <NavLink
-            to="projects"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-            className={activeSection === "projects" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            Projects
-          </NavLink>
-        </NavLinks>
-        <ContactButton
-          to="contact"
-          spy={true}
-          smooth={true}
-          offset={-70}
-          duration={500}
-          onClick={() => setIsOpen(false)}
-        >
-          Contact Me
-        </ContactButton>
-        <MobileToggle onClick={() => setIsOpen(!isOpen)}>☰</MobileToggle>
-      </NavContent>
-    </NavContainer>
+            {section.charAt(0).toUpperCase() + section.slice(1)}
+          </Link>
+        ))}
+      </div>
+    </nav>
   );
 };
 

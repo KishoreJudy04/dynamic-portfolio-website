@@ -1,90 +1,57 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import {
-  ContactSection,
-  Container,
-  SectionTitle,
-  ContactContent,
-  ContactInfo,
-  ContactForm,
-  InfoTitle,
-  InfoText,
-  SocialLinks,
-  SocialLink,
-  FormGroup,
-  Label,
-  Input,
-  TextArea,
-  SubmitButton,
-  Footer,
-  AccentText,
-} from "./styledComponents";
+import "./index.css";
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const templateParams = {
-    from_name: formData.name,
-    reply_to: formData.email,
-    message: formData.message,
-  };
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitted");
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      from_message: message,
+    };
 
     emailjs
       .send(
-        "service_midx4nq",
-        "template_nthpzii",
+        "service_44khg3s",
+        "template_te4csr8",
         templateParams,
         "lz8Gw0ROQJUNWmf3h"
       )
-      .then(
-        (response) => {
-          console.log("Success:", response.text);
-          alert("Thank You! Message has been sent successfully!");
-          setFormData({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          console.log("Error:", error.text);
-          alert("Failed to send message. Please try again later.");
-        }
-      );
+      .then((response) => {
+        alert("Thank You! Message has been sent successfully!");
+        setName("");
+        setEmail("");
+        setMessage("");
+      })
+      .catch((error) => {
+        alert("Failed to send message. Please try again later.");
+      });
   };
 
   return (
-    <ContactSection id="contact">
-      <Container>
-        <SectionTitle>
-          Contact <AccentText>Me</AccentText>
-        </SectionTitle>
-        <ContactContent>
-          <ContactInfo>
-            <InfoTitle>Let's work together!</InfoTitle>
-            <InfoText>
+    <section id="contact" className="contact-section">
+      <div className="container">
+        <h2 className="section-title">
+          Contact <span className="accent-text">Me</span>
+        </h2>
+        <div className="contact-content">
+          <div className="contact-info">
+            <h3 className="info-title">Let's work together!</h3>
+            <p className="info-text">
               I'm always open to discussing new projects, creative ideas, or
               opportunities to be part of your vision. Whether you have a
               question or just want to say hi, feel free to reach out!
-            </InfoText>
-            <SocialLinks>
-              <SocialLink
+            </p>
+            <div className="social-links">
+              <button
                 type="button"
+                className="social-button"
                 onClick={() =>
                   window.open("https://github.com/KishoreJudy04", "_blank")
                 }
@@ -95,9 +62,10 @@ const Contact = () => {
                   alt="Logo"
                   width="30"
                 />
-              </SocialLink>
-              <SocialLink
+              </button>
+              <button
                 type="button"
+                className="social-button"
                 onClick={() => window.open("https://linkedin.com", "_blank")}
                 aria-label="LinkedIn"
               >
@@ -106,9 +74,10 @@ const Contact = () => {
                   alt="Logo"
                   width="30"
                 />
-              </SocialLink>
-              <SocialLink
+              </button>
+              <button
                 type="button"
+                className="social-button"
                 onClick={() =>
                   window.open(
                     "https://www.instagram.com/kishore_judy_04/",
@@ -122,9 +91,10 @@ const Contact = () => {
                   alt="Logo"
                   width="30"
                 />
-              </SocialLink>
-              <SocialLink
+              </button>
+              <button
                 type="button"
+                className="social-button"
                 onClick={() =>
                   window.open(
                     "https://www.facebook.com/profile.php?id=100040365094247&sk=about",
@@ -138,63 +108,60 @@ const Contact = () => {
                   alt="Logo"
                   width="30"
                 />
-              </SocialLink>
-            </SocialLinks>
-          </ContactInfo>
-          <ContactForm
-            id="contactForm"
-            name="contactForm"
-            onSubmit={handleSubmit}
-          >
-            <FormGroup>
-              <Label htmlFor="name">Name</Label>
-              <Input
+              </button>
+            </div>
+          </div>
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name</label>
+              <input
                 type="text"
                 id="name"
                 name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                autoComplete="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                placeholder="Enter Your Name"
                 required
-                autoFocus
               />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="email">Email</Label>
-              <Input
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
                 type="email"
                 id="email"
                 name="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleChange}
-                autoComplete="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                placeholder="Enter Your Email"
                 required
-                autoFocus
               />
-            </FormGroup>
-            <FormGroup>
-              <Label htmlFor="message">Message</Label>
-              <TextArea
+            </div>
+            <div className="form-group">
+              <label htmlFor="message">Message</label>
+              <textarea
                 id="message"
                 name="message"
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={handleChange}
-                autoComplete="off"
+                value={message}
+                onChange={(event) => setMessage(event.target.value)}
+                placeholder="Enter Your Message"
                 required
                 rows="5"
               />
-            </FormGroup>
-            <SubmitButton type="submit">Send Message</SubmitButton>
-          </ContactForm>
-        </ContactContent>
-        <Footer>
+            </div>
+            <button type="submit" className="submit-button">
+              Send Message
+            </button>
+            <p className="form-note">
+              Note: If the form doesn't work, feel free to contact me directly
+              via LinkedIn.
+            </p>
+          </form>
+        </div>
+        <footer className="footer">
           <p>© 2025 Kishore. All rights reserved.</p>
-        </Footer>
-      </Container>
-    </ContactSection>
+        </footer>
+      </div>
+    </section>
   );
 };
 

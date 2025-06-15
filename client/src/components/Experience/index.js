@@ -1,12 +1,6 @@
 import { Chrono } from "react-chrono";
 import React from "react";
-import {
-  ExperienceSection,
-  Container,
-  SectionTitle,
-  ChronoWrapper,
-  AccentText,
-} from "./styledComponents";
+import "./index.css";
 
 const Experience = () => {
   const items = [
@@ -48,22 +42,22 @@ const Experience = () => {
   ];
 
   return (
-    <ExperienceSection id="experience">
-      <Container>
-        <SectionTitle>
-          My <AccentText>Experience</AccentText> &{" "}
-          <AccentText>Education</AccentText>
-        </SectionTitle>
-        <ChronoWrapper>
+    <section id="experience" className="experience-section">
+      <div className="container">
+        <h2 className="section-title">
+          My <span className="accent-text">Experience</span> &{" "}
+          <span className="accent-text">Education</span>
+        </h2>
+        <div className="chrono-wrapper">
           <Chrono
             items={items}
             mode="VERTICAL"
             theme={{
-              primary: " #00bcd4",
+              primary: "#00bcd4",
               secondary: "rgb(237, 241, 7)",
-              cardBgColor: " white",
-              cardForeColor: " #1F2937",
-              titleColor: " #1F2937",
+              cardBgColor: "white",
+              cardForeColor: "#1F2937",
+              titleColor: "#1F2937",
             }}
             fontSizes={{
               cardSubtitle: "0.95rem",
@@ -75,9 +69,9 @@ const Experience = () => {
             slideShow
             hideControls
           />
-        </ChronoWrapper>
-      </Container>
-    </ExperienceSection>
+        </div>
+      </div>
+    </section>
   );
 };
 

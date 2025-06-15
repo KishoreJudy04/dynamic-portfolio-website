@@ -1,21 +1,6 @@
 import React from "react";
-import {
-  AboutSection,
-  Container,
-  SectionTitle,
-  AboutContent,
-  ImageSection,
-  AboutImage,
-  TextSection,
-  Bio,
-  SkillsTitle,
-  SkillsGrid,
-  SkillCard,
-  SkillIcon,
-  SkillName,
-  Title,
-  AccentText,
-} from "./styledComponents";
+import "./index.css";
+
 const About = () => {
   const skills = [
     {
@@ -35,7 +20,7 @@ const About = () => {
       name: "React.js",
     },
     {
-      icon: "https://img.icons8.com/?size=100&id=ucDmdolNWVSa&format=png&color=000000", // Example responsive icon
+      icon: "https://img.icons8.com/?size=100&id=ucDmdolNWVSa&format=png&color=000000",
       name: "Responsive Design",
     },
     {
@@ -43,7 +28,7 @@ const About = () => {
       name: "Bootstrap",
     },
     {
-      icon: "https://img.icons8.com/?size=100&id=c1mtVgVrrFg8&format=png&color=000000", // Example UI/UX icon
+      icon: "https://img.icons8.com/?size=100&id=c1mtVgVrrFg8&format=png&color=000000",
       name: "UI/UX Design",
     },
     {
@@ -89,40 +74,41 @@ const About = () => {
   ];
 
   return (
-    <AboutSection id="about">
-      <Container>
-        <SectionTitle>
-          Why Do You <AccentText>Hire</AccentText> Me?
-        </SectionTitle>
-        <AboutContent>
-          <ImageSection>
-            <Title>About Me</Title>
-            <Bio>
+    <section id="about" className="about-section">
+      <div className="container">
+        <h2 className="section-title">
+          Why Do You <span className="accent-text">Hire</span> Me?
+        </h2>
+        <div className="about-content">
+          <div className="image-section">
+            <h2 className="about-title">About Me</h2>
+            <p className="bio">
               I'm a Full Stack Developer who loves building clean, responsive
               web applications that solve real-world problems and deliver
               seamless user experiences.
-            </Bio>
-            <AboutImage
+            </p>
+            <img
               src="https://portfolioprosite.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fabout-image.464b6621.png&w=1920&q=100"
               alt="About"
+              className="about-image"
             />
-          </ImageSection>
-          <TextSection>
-            <SkillsTitle>Skills</SkillsTitle>
-            <SkillsGrid>
+          </div>
+          <div className="text-section">
+            <h3 className="skills-title">Skills</h3>
+            <div className="skills-grid">
               {skills.map((skill, index) => (
-                <SkillCard key={index}>
-                  <SkillIcon>
+                <div className="skill-card" key={index}>
+                  <div className="skill-icon">
                     <img src={skill.icon} alt={skill.name} />
-                  </SkillIcon>
-                  <SkillName>{skill.name}</SkillName>
-                </SkillCard>
+                  </div>
+                  <h4 className="skill-name">{skill.name}</h4>
+                </div>
               ))}
-            </SkillsGrid>
-          </TextSection>
-        </AboutContent>
-      </Container>
-    </AboutSection>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
